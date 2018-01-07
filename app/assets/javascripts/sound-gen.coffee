@@ -1,3 +1,28 @@
+# The lowest note in our range, represented as Hz.
+A0        = 27.5
+
+# Twelfth root of two.  We'll use this to calculate the note we want to play
+# from a twelve tone scale, over ~7 octaves.
+BETA      = 1.0594631
+
+# Represents the range of values streaming from the IR sensor.
+RANGE_IN  = [20, 600]
+
+# Represents the range of values used to generate notes from our western scale.
+RANGE_OUT = [0, 87]
+
+# localize min and max functions for convenience and speed.
+min = Math.min
+max = Math.max
+
+# Scales the sensor values (RANGE_IN) down, into our note range (RANGE_OUT)
+scale = (x) ->
+  (max(RANGE_OUT...) - min(RANGE_OUT...)) * (x - min(RANGE_IN...)) /
+  (max(RANGE_IN...) - min(RANGE_IN...))
+
+# # Calculate the note for x, where x is an element in RANGE_OUT
+note = (x) -> A0 * (BETA ** x)
+
 class window.SoundGen
   instance = null
 
@@ -55,4 +80,4 @@ class window.SoundGen
   gen: (val) ->
     if val % 2 == 0
       @freeverb.dampening.value = val * 10;
-      @synth.triggerAttackRelease(val * 3, "8n")
+      @synth.triggerAttackRelease(note(scale(val)), "8n")
