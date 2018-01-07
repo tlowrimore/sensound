@@ -1,0 +1,7 @@
+{
+  "name": "sensound",
+  "private": true,
+  "dependencies": {
+    "tone": "^0.11.11"
+  }
+}
