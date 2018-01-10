@@ -57,11 +57,11 @@ class window.SoundGen
     @freeverb = new Tone.Freeverb().connect(widener)
 
     # Phaser
-    phaser  = new Tone.Phaser({
-              	"frequency":     1,
-              	"octaves":       5
-              	"baseFrequency": 1000
-              }).connect(@freeverb);
+    # phaser  = new Tone.Phaser({
+    #           	"frequency":     1,
+    #           	"octaves":       5
+    #           	"baseFrequency": 1000
+    #           }).connect(@freeverb);
 
     # Oscillator
     @synth = new Tone.MonoSynth({
@@ -70,14 +70,17 @@ class window.SoundGen
         modulationFrequency: 2
       },
       envelope: {
-        attack:   20,
-        decay:    20,
+        attack:   2,
+        decay:    2,
         sustain:  1,
         release:  4
       }
-    }).connect(phaser)
+    }).connect(@freeverb)
 
   gen: (val) ->
     if val % 2 == 0
       @freeverb.dampening.value = val * 10;
-      @synth.triggerAttackRelease(note(scale(val)), "8n")
+
+      _note = note(scale(val))
+      @synth.triggerAttackRelease(_note, "8n")
+      return _note
