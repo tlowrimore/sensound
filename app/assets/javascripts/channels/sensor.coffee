@@ -10,4 +10,4 @@ App.sensor = App.cable.subscriptions.create "SensorChannel",
     SoundGen.deinitialize()
 
   received: (data) ->
-    SoundGen.gen(data)
+    SoundGen.gen(data.note, data.value)

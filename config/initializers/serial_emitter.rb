@@ -1,1 +1,1 @@
-SerialReader.start("/dev/cu.usbmodem1411")
+SerialEmitter.start(:generate)

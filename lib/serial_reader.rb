@@ -37,9 +37,12 @@ class SerialReader
         end
       end
 
+      return self
     rescue
       puts "\e[33mWARNING: serial port could not be opened at: #{serial_port}\e[0m"
       puts "\e[33mWARNING: aborting serial reader.\e[0m"
+
+      return false
     end
 
     private
