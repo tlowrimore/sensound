@@ -1,1 +1,0 @@
-SerialEmitter.start(:generate)

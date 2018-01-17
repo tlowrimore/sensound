@@ -1,0 +1,1 @@
+NoteEmitter.start(:generate)

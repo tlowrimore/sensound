@@ -11,13 +11,13 @@ class SerialReader
     attr_reader :_thread
 
     # returns true when subscribed
-    def subscribe(&block)
-      subscribers[block] = true
+    def subscribe(broadcaster)
+      subscribers[broadcaster] = true
     end
 
     # returns true when unsubscribed
-    def unsubscribe(&block)
-      subscribers.delete(block)
+    def unsubscribe(broadcaster)
+      subscribers.delete(broadcaster)
     end
 
     # starts the reader on the given serial port

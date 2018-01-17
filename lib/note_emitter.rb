@@ -1,4 +1,4 @@
-class SerialEmitter
+class NoteEmitter
   MODES = %i(read generate)
 
   class << self
@@ -13,12 +13,12 @@ class SerialEmitter
       send mode, *args
     end
 
-    def subscribe(&block)
-      @provider.subscribe(&block)
+    def subscribe(broadcaster)
+      @provider.subscribe(broadcaster)
     end
 
-    def unsubscribe(&block)
-      @provider.unsubscribe(&block)
+    def unsubscribe(broadcaster)
+      @provider.unsubscribe(broadcaster)
     end
 
     private

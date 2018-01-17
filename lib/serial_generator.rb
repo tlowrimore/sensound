@@ -10,12 +10,12 @@ class SerialGenerator
   class << self
     attr_reader :_thread
 
-    def subscribe(&block)
-      subscribers[block] = true
+    def subscribe(broadcaster)
+      subscribers[broadcaster] = true
     end
 
-    def unsubscribe(&block)
-      subscribers.delete(block)
+    def unsubscribe(broadcaster)
+      subscribers.delete(broadcaster)
     end
 
     def start

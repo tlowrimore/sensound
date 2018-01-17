@@ -4,15 +4,11 @@ class SensorChannel < ApplicationCable::Channel
   def subscribed
     stream_from STREAM_NAME
 
-    @broadcaster = -> (value) {
-      note = Note.new(value)
-      ActionCable.server.broadcast STREAM_NAME, note.to_h
-    }
-
-    SerialEmitter.subscribe(&@broadcaster)
+    @broadcaster = Broadcaster.new(STREAM_NAME)
+    NoteEmitter.subscribe(@broadcaster)
   end
 
   def unsubscribed
-    SerialEmitter.unsubscribe(&@broadcaster)
+    NoteEmitter.unsubscribe(@broadcaster)
   end
 end
