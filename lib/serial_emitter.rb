@@ -14,7 +14,6 @@ class SerialEmitter
     end
 
     def subscribe(&block)
-      puts "provider => #{@provider.inspect}"
       @provider.subscribe(&block)
     end
 

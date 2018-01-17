@@ -11,7 +11,6 @@ class SerialGenerator
     attr_reader :_thread
 
     def subscribe(&block)
-      puts "SUBSCRIBING"
       subscribers[block] = true
     end
 
@@ -31,8 +30,7 @@ class SerialGenerator
 
       @_thread = Thread.new(subscribers) do |subscribers|
         generator.read do |value|
-          puts "SUBSCRIBERS => #{subscribers.inspect}"
-          subscribers.each { |s| s.call(value) }
+          subscribers.each { |s,_| s.call(value) }
         end
       end
 
