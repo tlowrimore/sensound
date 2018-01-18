@@ -1,7 +1,7 @@
 class SerialGenerator
 
   VALUE_RANGE = (20..600).to_a
-  FREQ        = 0.1 #seconds
+  FREQ        = 1 #seconds
 
   # -----------------------------------------------------
   # Class Methods

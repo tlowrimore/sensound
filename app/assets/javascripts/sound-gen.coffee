@@ -25,11 +25,6 @@ class window.SoundGen
   # ---------------------------------------------------------
 
   constructor: ->
-    # Stereo Widener
-    widener = new Tone.StereoWidener({width: 1}).toMaster()
-
-    # Reverb
-    @freeverb = new Tone.Freeverb().connect(widener)
 
     # Oscillator
     @synth = new Tone.MonoSynth({
@@ -38,16 +33,13 @@ class window.SoundGen
         modulationFrequency: 2
       },
       envelope: {
-        attack:   2,
-        decay:    2,
-        sustain:  1,
-        release:  4
+        attack:   0.05,
+        decay:    0.2,
+        sustain:  0.2,
+        release:  0.2
       }
-    }).connect(@freeverb)
+    }).toMaster()
 
   gen: (note, val) ->
-    if val % 2 == 0
-      @freeverb.dampening.value = val * 10;
-
-      @synth.triggerAttackRelease(note, "8n")
-      return note
+    @synth.triggerAttackRelease(note, "8n")
+    return note
