@@ -27,7 +27,7 @@ class window.SoundGen
   constructor: ->
 
     # Oscillator
-    @synth = new Tone.MonoSynth({
+    @synth = new Tone.PolySynth(1000).set({
       oscillator: {
         type: 'sine',
         modulationFrequency: 2

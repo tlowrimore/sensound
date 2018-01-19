@@ -19,6 +19,7 @@ class NoteEmitter
 
     def unsubscribe(broadcaster)
       @provider.unsubscribe(broadcaster)
+      broadcaster.finalize if broadcaster.respond_to? :finalize
     end
 
     private

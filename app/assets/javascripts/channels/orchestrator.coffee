@@ -1,6 +1,6 @@
 #= require ../sound-gen
 
-App.sensor = App.cable.subscriptions.create "SensorChannel",
+App.orchestrator = App.cable.subscriptions.create "OrchestratorChannel",
   connected: ->
     console.log("connection established!")
     SoundGen.initialize()
