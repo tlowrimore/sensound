@@ -29,8 +29,13 @@ class SerialGenerator
       end
 
       @_thread = Thread.new(subscribers) do |subscribers|
-        generator.read do |value|
-          subscribers.each { |s,_| s.call(value) }
+        begin
+          generator.read do |value|
+            subscribers.each { |s,_| s.broadcast(value) }
+          end
+        rescue Exception => ex
+          puts ex.message
+          puts ex.backtrace
         end
       end
 

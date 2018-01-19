@@ -33,7 +33,7 @@ class SerialReader
 
       @_thread = Thread.new(subscribers) do |subscribers|
         reader.read do |value|
-          subscribers.each { |s,_| s.call(value) }
+          subscribers.each { |s,_| s.broadcast(value) }
         end
       end
 

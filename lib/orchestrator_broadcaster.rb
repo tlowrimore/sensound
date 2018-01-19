@@ -1,11 +1,21 @@
 class OrchestratorBroadcaster < Broadcaster
-  # def call(value)
-  #   note  = Note.new(sensor_value: value)
-  #   scale = Scale.new(note)
-  #
-  #   scale.ascending(:major).each do |n|
-  #     ActionCable.server.broadcast stream_name, n.to_h
-  #     sleep 0.1
-  #   end
-  # end
+  def broadcast(sensor_value)
+    note  = Note.create_from_sensor(sensor_value)
+    scale = Scale.new(note)
+    notes = scale.ascending(:minor_pentatonic, octaves: 7)
+
+    # Iterate all registered broadcasters
+    chord = Broadcaster.map do |broadcaster|
+
+      # skip self to avoid infinite recursion
+      next note if broadcaster == self
+
+      # broadcast random note from our scale and return the note
+      notes.sample.tap do |n|
+        broadcaster.broadcast(n)
+      end
+    end
+
+    ActionCable.server.broadcast stream_name, chord.map(&:value)
+  end
 end

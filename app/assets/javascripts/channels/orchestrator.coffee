@@ -9,5 +9,5 @@ App.orchestrator = App.cable.subscriptions.create "OrchestratorChannel",
     console.log("connection lost!")
     SoundGen.deinitialize()
 
-  received: (data) ->
-    SoundGen.gen(data.note, data.value)
+  received: (notes) ->
+    SoundGen.gen(notes)

@@ -17,9 +17,25 @@ class Broadcaster
         broadcasters.delete(broadcaster)
       end
 
+      def each
+        broadcasters.keys.each { |b| yield b }
+      end
+
       def broadcasters
         @_broadcasters ||= {}
       end
+    end
+  end
+
+  # -----------------------------------------------------
+  # Class Methods
+  # -----------------------------------------------------
+
+  class << self
+    include Enumerable
+    
+    def each(&block)
+      Registry.each(&block)
     end
   end
 
@@ -36,11 +52,9 @@ class Broadcaster
     Registry.add(self)
   end
 
-  def call(value)
-    note  = Note.new(sensor_value: value)
-    # scale = Scale.new(note)
-
-    ActionCable.server.broadcast stream_name, note.to_h
+  def broadcast(note)
+    raise NotImplementedError,
+          "Broadcaster must be subclassed to implement #broadcast"
   end
 
   def finalize

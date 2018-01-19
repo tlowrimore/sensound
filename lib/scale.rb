@@ -17,9 +17,9 @@ class Scale
     @root = root
   end
 
-  def ascending(scale_name)
+  def ascending(scale_name, octaves: 1)
     scale_name  = scale_name.to_sym
-    scale       = SCALES[scale_name]
+    scale       = octaves.times.map { SCALES[scale_name] }.flatten
 
     ref = @root
     scale.map do |interval|
@@ -27,9 +27,9 @@ class Scale
     end
   end
 
-  def descending(scale_name)
+  def descending(scale_name, octaves: 1)
     scale_name  = scale_name.to_sym
-    scale       = SCALES[scale_name]
+    scale       = octaves.times.map { SCALES[scale_name] }.flatten
 
     ref = @root
     scale.reverse.map do |interval|

@@ -15,10 +15,10 @@ class window.SoundGen
     # do some cleanup.
     instance = null
 
-  @gen: (note, val) ->
+  @gen: (notes) ->
     return unless instance?
 
-    instance.gen(note, val)
+    instance.gen(notes)
 
   # ---------------------------------------------------------
   # Constructor & Instance Methods
@@ -40,6 +40,6 @@ class window.SoundGen
       }
     }).toMaster()
 
-  gen: (note, val) ->
-    @synth.triggerAttackRelease(note, "8n")
-    return note
+  gen: (notes) ->
+    @synth.triggerAttackRelease(notes, "8n")
+    return notes
