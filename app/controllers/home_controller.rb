@@ -1,4 +1,4 @@
 class HomeController < ApplicationController
-  def show
-  end
+  def orchestrate;end
+  def participate;end
 end

@@ -12,4 +12,5 @@
 //
 //= require tone/build/Tone
 //= require rails-ujs
-//= require_tree .
+//= require cable.js
+//= require sound-gen

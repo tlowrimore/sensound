@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resource :home, only: [:show]
+  get 'orchestrate', to: 'home#orchestrate'
+  get 'participate', to: 'home#participate'
 
-  root "home#show"
+  root "home#participate"
 end

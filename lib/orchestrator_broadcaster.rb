@@ -2,7 +2,7 @@ class OrchestratorBroadcaster < Broadcaster
   def broadcast(sensor_value)
     note  = Note.create_from_sensor(sensor_value)
     scale = Scale.new(note)
-    notes = scale.ascending(:minor_pentatonic, octaves: 7)
+    notes = scale.ascending(:major, octaves: 7)
 
     # Iterate all registered broadcasters
     chord = Broadcaster.map do |broadcaster|

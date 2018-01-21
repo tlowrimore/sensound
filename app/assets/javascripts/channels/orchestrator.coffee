@@ -2,7 +2,6 @@
 
 App.orchestrator = App.cable.subscriptions.create "OrchestratorChannel",
   connected: ->
-    console.log("connection established!")
     SoundGen.initialize()
 
   disconnected: ->

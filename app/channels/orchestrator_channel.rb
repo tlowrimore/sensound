@@ -1,5 +1,5 @@
 class OrchestratorChannel < ApplicationCable::Channel
-  STREAM_NAME = 'sensor_readings'
+  STREAM_NAME = 'orchestration'
 
   def subscribed
     stream_from STREAM_NAME

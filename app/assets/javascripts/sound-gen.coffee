@@ -33,13 +33,14 @@ class window.SoundGen
         modulationFrequency: 2
       },
       envelope: {
-        attack:   0.05,
-        decay:    0.2,
-        sustain:  0.2,
+        attack:   4,
+        decay:    10,
+        sustain:  10,
         release:  0.2
       }
     }).toMaster()
 
   gen: (notes) ->
-    @synth.triggerAttackRelease(notes, "8n")
+    
+    @synth.triggerAttackRelease(notes, "2n")
     return notes

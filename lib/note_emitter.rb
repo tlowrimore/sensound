@@ -14,11 +14,11 @@ class NoteEmitter
     end
 
     def subscribe(broadcaster)
-      @provider.subscribe(broadcaster)
+      provider.subscribe(broadcaster)
     end
 
     def unsubscribe(broadcaster)
-      @provider.unsubscribe(broadcaster)
+      provider.unsubscribe(broadcaster)
       broadcaster.finalize if broadcaster.respond_to? :finalize
     end
 
