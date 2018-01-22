@@ -1,1 +1,1 @@
-NoteEmitter.start(:generate)
+NoteEmitter.start(:read, '/dev/cu.usbmodem1411')

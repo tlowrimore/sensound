@@ -1,10 +1,11 @@
 require 'serialport'
 
 class SerialReader
-  BAUD_RATE = 9600
-  DATA_BITS = 8
-  STOP_BITS = 1
-  PARITY    = SerialPort::NONE
+  BAUD_RATE     = 9600
+  DATA_BITS     = 8
+  STOP_BITS     = 1
+  PARITY        = SerialPort::NONE
+  DISPATCH_FREQ = 500 # milliseconds
 
   class << self
 
@@ -32,8 +33,15 @@ class SerialReader
       end
 
       @_thread = Thread.new(subscribers) do |subscribers|
-        reader.read do |value|
-          subscribers.each { |s,_| s.broadcast(value) }
+        begin
+          reader.read do |value|
+            throttler.throttle do
+              subscribers.each { |s,_| s.broadcast(value) }
+            end
+          end
+        rescue Exception => ex
+          puts ex.message
+          puts ex.backtrace
         end
       end
 
@@ -49,6 +57,10 @@ class SerialReader
 
     def subscribers
       @_subscribers ||= {}
+    end
+
+    def throttler
+      @_throttler ||= Throttle.new(DISPATCH_FREQ)
     end
   end
 

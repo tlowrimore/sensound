@@ -1,14 +1,19 @@
 class OrchestratorBroadcaster < Broadcaster
+  SENSOR_VALUE_LOWER_BOUND = 55
+
   def broadcast(sensor_value)
-    note  = Note.create_from_sensor(sensor_value)
-    scale = Scale.new(note)
+    sensor_value = sensor_value.to_i
+    return if SENSOR_VALUE_LOWER_BOUND < 55
+
+    @note = Note.create_from_sensor(sensor_value)
+    scale = Scale.new(@note)
     notes = scale.ascending(:major, octaves: 7)
 
     # Iterate all registered broadcasters
     chord = Broadcaster.map do |broadcaster|
 
       # skip self to avoid infinite recursion
-      next note if broadcaster == self
+      next @note if broadcaster == self
 
       # broadcast random note from our scale and return the note
       notes.sample.tap do |n|
