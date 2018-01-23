@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require tone/build/Tone
+//= require startaudiocontext/StartAudioContext
 //= require rails-ujs
 //= require cable.js
 //= require sound-gen

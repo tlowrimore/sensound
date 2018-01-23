@@ -1,9 +1,11 @@
-App.participant = App.cable.subscriptions.create "ParticipantChannel",
-  connected: ->
-    # Called when the subscription is ready for use on the server
+promise = StartAudioContext(Tone.context, '#btn-participate').then ->
 
-  disconnected: ->
-    # Called when the subscription has been terminated by the server
+  App.participant = App.cable.subscriptions.create "ParticipantChannel",
+    connected: ->
+      SoundGen.initialize()
 
-  received: (note) ->
-    SoundGen.gen(note)
+    disconnected: ->
+      SoundGen.deinitialize()
+
+    received: (note) ->
+      SoundGen.gen(note)

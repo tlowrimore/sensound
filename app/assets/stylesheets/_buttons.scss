@@ -1,0 +1,27 @@
+.btn {
+  transition:     all .5s;
+  background:     transparent;
+  border:         1px solid #666;
+  color:          #666;
+  padding:        0.5rem 1rem;
+  vertical-align: middle;
+  user-select:    none;
+  white-space:    nowrap;
+  margin:         0;
+
+  &.btn-block {
+    display: block;
+    width:  100%;
+  }
+
+  &.btn-lg {
+    padding:   2rem 3rem;
+    font-size: 3rem;
+    font-weight: 200;
+  }
+
+  &:hover {
+    background-color: #222;
+    color: #777;
+  }
+}

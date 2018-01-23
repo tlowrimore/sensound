@@ -1,9 +1,9 @@
 class OrchestratorBroadcaster < Broadcaster
-  SENSOR_VALUE_LOWER_BOUND = 55
+  SENSOR_VALUE_LOWER_BOUND = 60
 
   def broadcast(sensor_value)
     sensor_value = sensor_value.to_i
-    return if SENSOR_VALUE_LOWER_BOUND < 55
+    return if sensor_value < SENSOR_VALUE_LOWER_BOUND
 
     @note = Note.create_from_sensor(sensor_value)
     scale = Scale.new(@note)

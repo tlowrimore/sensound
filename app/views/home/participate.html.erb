@@ -1,7 +1,7 @@
-<%= content_for :scripts do %>
-  <%= javascript_include_tag 'channels/participant' %>
-<% end %>
-
 <div class='full-screen dark'>
-  <h1 class='display centered'>Participate</div>
+  <button type='button'
+          class='btn btn-lg btn-block centered'
+          id='btn-participate'>Participate</button>
 </div>
+
+<%= javascript_include_tag 'channels/participant' %>
