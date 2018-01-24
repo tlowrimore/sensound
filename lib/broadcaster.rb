@@ -1,5 +1,4 @@
 class Broadcaster
-  SEED_RANGE = 88
 
   # -----------------------------------------------------
   # Broadcaster Registry
@@ -33,7 +32,7 @@ class Broadcaster
 
   class << self
     include Enumerable
-    
+
     def each(&block)
       Registry.each(&block)
     end
@@ -43,11 +42,10 @@ class Broadcaster
   # Instance Methods
   # -----------------------------------------------------
 
-  attr_reader :stream_name, :seed
+  attr_reader :stream_name
 
   def initialize(stream_name)
     @stream_name  = stream_name
-    @seed         = rand(SEED_RANGE)
 
     Registry.add(self)
   end
