@@ -5,7 +5,7 @@ class SerialReader
   DATA_BITS     = 8
   STOP_BITS     = 1
   PARITY        = SerialPort::NONE
-  DISPATCH_FREQ = 500 # milliseconds
+  DISPATCH_FREQ = 300 # milliseconds
 
   class << self
 

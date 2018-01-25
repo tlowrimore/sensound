@@ -11,17 +11,21 @@ class Scale
     minor_pentatonic:   [3,2,2,3,2]
   }
 
-  attr_reader :root
+  # -----------------------------------------------------
+  # Instance Methods
+  # -----------------------------------------------------
 
-  def initialize(root)
-    @root = root
+  attr_reader :name, :tonic
+
+  def initialize(tonic, name)
+    @tonic  = tonic
+    @name   = name.to_sym
   end
 
-  def notes(scale_name, octaves: 1)
-    scale_name  = scale_name.to_sym
-    scale       = octaves.times.map { SCALES[scale_name] }.flatten
+  def notes(octaves: 1)
+    scale = octaves.times.map { SCALES[name] }.flatten
 
-    ref = @root
+    ref = @tonic
     scale.map do |interval|
       ref = ref.step(interval)
     end

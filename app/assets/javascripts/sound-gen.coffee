@@ -25,6 +25,7 @@ class window.SoundGen
   # ---------------------------------------------------------
 
   constructor: ->
+    pingPong = new Tone.PingPongDelay("16n", 0.1).toMaster();
 
     # Oscillator
     @synth = new Tone.PolySynth(1000).set({
@@ -33,14 +34,14 @@ class window.SoundGen
         modulationFrequency: 2
       },
       envelope: {
-        attack:   4,
+        attack:   2,
         decay:    10,
         sustain:  10,
         release:  0.2
       }
-    }).toMaster()
+    }).connect(pingPong)
 
   gen: (notes) ->
-    
-    @synth.triggerAttackRelease(notes, "2n")
+
+    @synth.triggerAttackRelease(notes, "4n")
     return notes

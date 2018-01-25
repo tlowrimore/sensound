@@ -1,25 +1,25 @@
 class OrchestratorBroadcaster < Broadcaster
-  SENSOR_VALUE_LOWER_BOUND  = 60
+  SENSOR_VALUE_LOWER_BOUND  = 80
   OCTAVE_RANGE              = 1
 
   def broadcast(sensor_value)
     sensor_value = sensor_value.to_i
     return if sensor_value < SENSOR_VALUE_LOWER_BOUND
 
-    # Root note, derived from sensor reading
+    # tonic note, derived from sensor reading
     @note = Note.create_from_sensor(sensor_value)
 
-    # The current octave of the root note.
+    # The current octave of the tonic note.
     octave = @note.octave
 
     # When generating participant notes, keep them with this range.
     octave_range = OCTAVE_RANGE.times.map { |i| (i - 1) + octave }
 
-    # Create a new scale, setting its root.
-    scale = Scale.new(@note)
+    # Create a new scale, setting its tonic note.
+    scale = Scale.new(@note, :major)
 
-    # Calculate all note of the named scale over n octaves.
-    notes = scale.notes(:major, octaves: 7)
+    # Calculate all note of the scale over n octaves.
+    notes = scale.notes(octaves: 7)
 
     # Iterate all registered broadcasters, broadcasting each note, and
     # building a chord from all selected notes.
