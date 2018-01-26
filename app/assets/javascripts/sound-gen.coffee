@@ -35,8 +35,8 @@ class window.SoundGen
       },
       envelope: {
         attack:   2,
-        decay:    10,
-        sustain:  10,
+        decay:    0.1,
+        sustain:  0.1,
         release:  0.2
       }
     }).connect(pingPong)
