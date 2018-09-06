@@ -12,6 +12,7 @@
 //
 //= require tone/build/Tone
 //= require startaudiocontext/StartAudioContext
+//= require jquery
 //= require rails-ujs
 //= require cable.js
 //= require sound-gen

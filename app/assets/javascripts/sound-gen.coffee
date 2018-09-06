@@ -42,6 +42,5 @@ class window.SoundGen
     }).connect(pingPong)
 
   gen: (notes) ->
-
     @synth.triggerAttackRelease(notes, "4n")
     return notes

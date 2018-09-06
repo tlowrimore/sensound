@@ -6,14 +6,20 @@
   right:    0;
   display:  flex;
   padding:  1rem;
-  
+
   .centered {
     align-self: center;
     margin:     auto;
   }
 
   &.dark {
-    background-color: #111;
-    color: #666;
+    background-color: #444;
+    color: #444;
+  }
+
+  &.viz {
+    -webkit-transition: all 1s;
+    transition: all 1s;
+    background: radial-gradient(circle, #000, #000);
   }
 }

@@ -1,7 +1,16 @@
 <div class='full-screen dark'>
   <button type='button'
           class='btn btn-lg btn-block centered'
-          id='btn-participate'>Begin</button>
+          id='btn-participate'>Press To Begin</button>
+
+  <div style='display: none;' id='notice-joined'>
+    <h1>
+      <span class='highlight'>Welcome.</span>
+    </h1>
+    <p>
+      <span class='highlight'>Your phone is now generating tones.</span>
+    </p>
+  </div>
 </div>
 
 <%= javascript_include_tag 'channels/participant' %>
