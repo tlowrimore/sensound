@@ -1,25 +1,16 @@
-.full-screen {
-  position: absolute;
-  top:      0;
-  bottom:   0;
-  left:     0;
-  right:    0;
-  display:  flex;
-  padding:  1rem;
+.centered {
+  text-align: center;
+  vertical-align: middle;
+  margin-top:     40vh;
+}
 
-  .centered {
-    align-self: center;
-    margin:     auto;
-  }
+.dark {
+  background-color: #444;
+  color: #444;
+}
 
-  &.dark {
-    background-color: #444;
-    color: #444;
-  }
-
-  &.viz {
-    -webkit-transition: all 1s;
-    transition: all 1s;
-    background: radial-gradient(circle, #000, #000);
-  }
+.viz {
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  background: radial-gradient(circle, #000, #000);
 }
